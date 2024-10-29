@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# Technical Documentation for CryptoSwap Component
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Architecture Decisions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The `CryptoSwap` component is designed as a functional React component utilizing hooks for state management. The architecture follows a component-based design, promoting reusability and separation of concerns. Key architectural decisions include:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Functional Components**: The use of functional components allows for a more concise and readable codebase, leveraging React hooks for state and lifecycle management.
+- **Modular Design**: The component imports several sub-components (`OrderRouting`, `PriceChart`, and `TokenModal`), which encapsulate specific functionalities, enhancing maintainability and testability.
+- **TypeScript**: The use of TypeScript provides type safety, reducing runtime errors and improving developer experience through better tooling and autocompletion.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## State Management Approach
 
-## Learn More
+State management in the `CryptoSwap` component is handled using the `useState` hook from React. The component maintains a single state object that encapsulates all relevant data, including:
 
-To learn more about Next.js, take a look at the following resources:
+- `sellAmount`: The amount of cryptocurrency the user intends to sell.
+- `buyAmount`: The amount of cryptocurrency the user intends to buy.
+- `usdValue`: The USD equivalent of the sell amount.
+- `receiveUsdValue`: The USD equivalent of the buy amount.
+- `isModalOpen`: A boolean indicating whether the token selection modal is open.
+- `buySelectedToken` and `sellSelectedToken`: Objects representing the selected tokens for buying and selling.
+- `buyTriggered`: A boolean indicating if the buy token was triggered.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This approach allows for a centralized state management strategy, making it easier to manage and update the state based on user interactions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Performance Considerations
 
-## Deploy on Vercel
+Several performance considerations have been taken into account:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **State Updates**: The component uses functional updates to the state, which ensures that the latest state is used when calculating new values. This prevents potential issues with stale state.
+- **Memoization**: While not explicitly implemented in the current code, using `React.memo` or `useMemo` for expensive calculations or components that do not need to re-render on every state change can improve performance.
+- **Event Handlers**: The event handlers are defined inline, which is acceptable for this component's size. However, for larger components, it may be beneficial to define them outside the render method to prevent unnecessary re-creations on each render.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Known Limitations
+
+Despite the robust design, there are some known limitations:
+
+- **Token Data Management**: The `tokenValues` object is hardcoded, which limits flexibility. Ideally, this data should be fetched from an API to ensure it is up-to-date with current market values.
+- **Error Handling**: The component lacks comprehensive error handling for user inputs and API calls. For instance, if a user inputs an invalid amount, there is no feedback mechanism to inform them of the error.
+- **Gas Fees Calculation**: The gas fees are currently hardcoded, which may not reflect real-time transaction costs. Integrating a dynamic gas fee calculation based on network conditions would enhance the user experience.
+- **Accessibility**: The component does not currently implement accessibility features, such as ARIA roles or keyboard navigation, which could limit usability for users with disabilities.
+
+By addressing these limitations and considering the outlined architecture and performance strategies, the `CryptoSwap` component can be further enhanced to provide a more robust and user-friendly experience.
