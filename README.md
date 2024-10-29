@@ -39,6 +39,5 @@ Despite the robust design, there are some known limitations:
 - **Token Data Management**: The `tokenValues` object is hardcoded, which limits flexibility. Ideally, this data should be fetched from an API to ensure it is up-to-date with current market values.
 - **Error Handling**: The component lacks comprehensive error handling for user inputs and API calls. For instance, if a user inputs an invalid amount, there is no feedback mechanism to inform them of the error.
 - **Gas Fees Calculation**: The gas fees are currently hardcoded, which may not reflect real-time transaction costs. Integrating a dynamic gas fee calculation based on network conditions would enhance the user experience.
-- **Accessibility**: The component does not currently implement accessibility features, such as ARIA roles or keyboard navigation, which could limit usability for users with disabilities.
 
 By addressing these limitations and considering the outlined architecture and performance strategies, the `CryptoSwap` component can be further enhanced to provide a more robust and user-friendly experience.
