@@ -1,6 +1,49 @@
-
-
 # Technical Documentation for CryptoSwap Component
+
+## Setup and Running the Project
+
+To set up and run the CryptoSwap project, follow these steps:
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- **Node.js**: Version 14 or higher
+- **npm**: Version 5.6 or higher (comes with Node.js)
+
+### Installation Steps
+
+1. **Clone the Repository**:
+   Open your terminal and run the following command to clone the repository:
+   ```bash
+   git clone https://github.com/your-username/crypto-swap.git
+   ```
+   Replace `your-username` with your actual GitHub username.
+
+2. **Install Dependencies**:
+   Run the following command to install the required dependencies:
+   ```bash
+   npm install
+   ```
+
+3. **Run the Development Server**:
+   Start the development server with the following command:
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in Browser**:
+   Once the server is running, open your web browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
+
+## Project Structure
+
+- **`app/`**: Contains the main application files.
+- **`components/`**: Contains reusable components like `CryptoSwap`, `OrderRouting`, `PriceChart`, and `TokenModal`.
+- **`redux/`**: Contains the Redux store configuration and slices.
+- **`public/`**: Contains static assets like images and icons.
 
 ## Architecture Decisions
 
