@@ -291,7 +291,7 @@ const CryptoSwap: React.FC = () => {
                       parseFloat(
                         state.receiveUsdValue.replace(/[^0-9.]/g, "")
                       ) - gasFees
-                    } (max slippage ${slippage})`
+                    } (max slippage ${slippage}%)`
                   )}
                 </div>
               )}
@@ -316,7 +316,7 @@ const CryptoSwap: React.FC = () => {
               type="button"
               className="w-full bg-[#0ea7bf] text-white py-4 rounded-xl font-medium mt-4 hover:bg-[#0dbbac] transition"
             >
-              Get started
+              Connect
             </button>
             {isSettingsOpen && (
               <SettingsPanel
