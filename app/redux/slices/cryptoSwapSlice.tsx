@@ -16,6 +16,7 @@ interface CryptoSwapState {
   buySelectedToken: Token | null;
   sellSelectedToken: Token | null;
   buyTriggered: boolean;
+  slippage: string;
 }
 
 const initialState: CryptoSwapState = {
@@ -27,6 +28,7 @@ const initialState: CryptoSwapState = {
   buySelectedToken: null,
   sellSelectedToken: null,
   buyTriggered: false,
+  slippage: '',
 };
 
 const cryptoSwapSlice = createSlice({
@@ -45,9 +47,12 @@ const cryptoSwapSlice = createSlice({
     toggleModal: (state, action: PayloadAction<boolean>) => {
       state.isModalOpen = action.payload;
     },
+    setSlippage: (state, action: PayloadAction<string>) => {
+      state.slippage = action.payload;
+    },
   },
 });
 
-export const { setToken, setAmounts, toggleModal } = cryptoSwapSlice.actions;
+export const { setToken, setAmounts, toggleModal, setSlippage } = cryptoSwapSlice.actions;
 
 export default cryptoSwapSlice.reducer; 

@@ -1,28 +1,48 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Switch } from "@/components/ui/switch"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { Info, X } from "lucide-react"
-import * as React from "react"
+import { setSlippage } from "@/app/redux/slices/cryptoSwapSlice";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Info, X } from "lucide-react";
+import * as React from "react";
+import { useDispatch } from "react-redux";
 
-export default function SettingsPanel({isSettingsOpen, setIsSettingsOpen}:any) {
-  const [customValue, setCustomValue] = React.useState("0.00")
-  const [selectedValue, setSelectedValue] = React.useState("auto")
+export default function SettingsPanel({
+  isSettingsOpen,
+  setIsSettingsOpen,
+}: any) {
+  const [customValue, setCustomValue] = React.useState("0.00");
+  const [selectedValue, setSelectedValue] = React.useState("auto");
+
+  const dispatch = useDispatch();
 
   if (!isSettingsOpen) return null;
 
+  const handleSaveSettings = () => {
+    dispatch(setSlippage(selectedValue));
+    setIsSettingsOpen(false)
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 bg-black opacity-50" onClick={() => setIsSettingsOpen(false)}></div>
+      <div
+        className="absolute inset-0 bg-black opacity-50"
+        onClick={() => setIsSettingsOpen(false)}
+      ></div>
       <Card className="w-full max-w-md bg-black border-gray-800 z-10">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <CardTitle className="text-xl font-semibold text-white flex items-center gap-2">
             Swap Settings
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
           </CardTitle>
-          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white" onClick={() => setIsSettingsOpen(false)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-gray-400 hover:text-white"
+            onClick={() => setIsSettingsOpen(false)}
+          >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
           </Button>
@@ -46,7 +66,7 @@ export default function SettingsPanel({isSettingsOpen, setIsSettingsOpen}:any) {
             <ToggleGroup
               type="single"
               value={selectedValue}
-              onValueChange={(value:any) => value && setSelectedValue(value)}
+              onValueChange={(value: any) => value && setSelectedValue(value)}
               className="flex justify-between bg-gray-900 rounded-lg p-1"
             >
               <ToggleGroupItem
@@ -112,6 +132,7 @@ export default function SettingsPanel({isSettingsOpen, setIsSettingsOpen}:any) {
             </Button>
             <Button
               className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+              onClick={handleSaveSettings}
             >
               Save Settings
             </Button>
@@ -119,5 +140,5 @@ export default function SettingsPanel({isSettingsOpen, setIsSettingsOpen}:any) {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
