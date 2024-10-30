@@ -34,7 +34,6 @@ export default function OrderRouting({ isOpen, onClose }: any) {
     isOpen && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start md:items-center justify-center z-50 overflow-y-auto rounded-lg">
         <div className="w-full h-[75%] bg-black text-white p-4 modal relative max-w-[95%] md:max-w-4xl mx-auto rounded-2xl">
-          {/* Header */}
           <div className="flex items-center gap-2 mb-8">
             <div className="w-6 h-6 rounded bg-emerald-500 flex items-center justify-center">
               <DollarSign className="w-4 h-4" />
@@ -49,15 +48,12 @@ export default function OrderRouting({ isOpen, onClose }: any) {
             </button>
           </div>
 
-          {/* Main Routing Display */}
           <div className="relative mx-auto">
-            {/* SVG Paths - Visible on both mobile and desktop */}
             <svg 
               className="absolute inset-0 w-full h-full" 
               style={{ minHeight: "400px" }}
               preserveAspectRatio="xMidYMid meet"
             >
-              {/* Top Route Path */}
               <path
                 d={svgCoords.mobile.topPath}
                 className="stroke-gray-600 stroke-[1.5] md:hidden"
@@ -70,7 +66,6 @@ export default function OrderRouting({ isOpen, onClose }: any) {
                 strokeDasharray="4 4"
                 fill="none"
               />
-              {/* Bottom Route Path */}
               <path
                 d={svgCoords.mobile.bottomPath}
                 className="stroke-gray-600 stroke-[1.5] md:hidden"
@@ -83,7 +78,6 @@ export default function OrderRouting({ isOpen, onClose }: any) {
                 strokeDasharray="4 4"
                 fill="none"
               />
-              {/* Connecting Vertical Lines */}
               <path
                 d={svgCoords.mobile.leftVertical}
                 className="stroke-gray-600 stroke-[1.5] md:hidden"

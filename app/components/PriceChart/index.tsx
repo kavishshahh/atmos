@@ -33,7 +33,7 @@ const PriceChart = () => {
       setChartDimensions({ width, height });
     };
 
-    updateDimensions(); // Set initial dimensions
+    updateDimensions();
     window.addEventListener("resize", updateDimensions);
 
     return () => {

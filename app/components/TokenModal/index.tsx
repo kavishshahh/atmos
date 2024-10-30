@@ -56,7 +56,6 @@ export const TokenModal: React.FC<TokenModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
       <div className="bg-[#1a1a1d] rounded-2xl w-full max-w-md shadow-lg">
-        {/* Modal Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
           <h2 className="text-xl font-semibold text-white">Select a token</h2>
           <button
@@ -67,7 +66,6 @@ export const TokenModal: React.FC<TokenModalProps> = ({
           </button>
         </div>
 
-        {/* Search Box */}
         <div className="p-4">
           <div className="relative">
             <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -84,7 +82,6 @@ export const TokenModal: React.FC<TokenModalProps> = ({
           </div>
         </div>
 
-        {/* Token List */}
         <div className="px-2">
           <div className="px-2 py-1">
             <span className="text-sm text-gray-500 flex items-center gap-2">
