@@ -1,12 +1,11 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Settings } from "lucide-react";
 import React, { useState } from "react";
 import OrderRouting from "./components/OrderRouting";
 import PriceChart from "./components/PriceChart";
+import SettingsPanel from "./components/SettingsPanel";
 import { TokenModal } from "./components/TokenModal";
-import { orderRoutingData } from "./utils/data";
-
 interface Token {
   id: string;
   name: string;
@@ -35,6 +34,7 @@ const CryptoSwap: React.FC = () => {
     buyTriggered: false,
   });
   const [isOrderRouteOpen, setOrderRouteOpen] = useState<boolean>(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
 
   const gasFees = 5;
 
@@ -154,9 +154,19 @@ const CryptoSwap: React.FC = () => {
     <>
       <div className=" flex-col min-h-screen bg-gradient-to-br from-[#0dbbac] via-[#0ea7bf] to-[#0bd790] p-6 flex items-center">
         <div className="max-w-md w-full bg-[#1a1a1d] rounded-2xl p-6 shadow-lg mb-10">
-          <h1 className="text-3xl font-bold mb-8 text-center text-white">
-            Swap anytime, <br /> anywhere.
-          </h1>
+          <div className="flex flex-row justify-between items-center">
+            <h1 className="text-3xl font-bold mb-8 text-center text-white">
+              Swap anytime, <br /> anywhere.
+            </h1>
+
+            <button
+              onClick={() => {
+                setIsSettingsOpen(true);
+              }}
+            >
+              <Settings color="blue" size={24} />
+            </button>
+          </div>
 
           <div className="space-y-4">
             <div className="bg-[#2c2c2e] p-4 rounded-xl">
@@ -284,7 +294,6 @@ const CryptoSwap: React.FC = () => {
             </div>
             {isOrderRouteOpen && (
               <OrderRouting
-                orderRoutingData={orderRoutingData}
                 isOpen={isOrderRouteOpen}
                 onClose={() => setOrderRouteOpen(false)}
               />
@@ -305,6 +314,7 @@ const CryptoSwap: React.FC = () => {
             >
               Get started
             </button>
+            {isSettingsOpen && <SettingsPanel isSettingsOpen={isSettingsOpen} setIsSettingsOpen={setIsSettingsOpen}/>}
           </div>
         </div>
 
@@ -314,7 +324,9 @@ const CryptoSwap: React.FC = () => {
           onSelect={handleTokenSelect}
           buyTriggered={state.buyTriggered}
         />
+        
         <PriceChart />
+
       </div>
     </>
   );
